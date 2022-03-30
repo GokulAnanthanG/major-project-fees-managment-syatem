@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@400;700;900&family=Tomorrow&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* The side sidebar igation menu */
+.sidebar {
+  height: 100%;
+  width: 200px;
+  background-color: #161827;
+  border-right: 0.2px solid rgba(128, 128, 128, 0.459);
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  overflow: auto;
+}
+
+/* Sidebar links */
+
+.sidebar .logo img {
+  width: 50%;
+  height: 100px;
+}
+.sidebar .logo p {
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+}
+.sidebar .menu-text {
+  margin-top: 30px;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  font-size: 14px;
+}
+.sidebar a {
+  text-decoration: none;
+  display: block;
+  font-family: "Poppins", sans-serif;
+  margin-top: 22.9px;
+  color: rgba(255, 255, 255, 0.575);
+  font-size: 14px;
+  margin-left: 41px;
+}
+.sidebar .active {
+  color: #fc5b5c;
+}
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #969191;
+}
+.content {
+  background-color: #292a3e;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+  padding-left: 220px;
+}
+
+.top-button {
+  width: 150px;
+  height: 30px;
+  font-family: "Poppins", sans-serif;
+}
+.top-button-active {
+  color: #fc5b5c;
+}
+.major-content {
+  margin-top: 10px;
+  width: 100%;
+  min-height: 70%;
+  border-radius: 5px;
+  background-color: #494c5a;
+  padding: 20px;
+}
+.major-content table {
+  margin: auto;
+}
+.major-content table .radio {
+  height: 18px;
+  width: 18px;
+}
+.major-content table tr td {
+  padding: 10px 20px;
+}
+.major-content table tr td label {
+  font-family: "Poppins", sans-serif;
+  color: rgba(255, 255, 255, 0.76);
+}
+.major-content table tr td input {
+  width: 400px;
+  height: 30px;
+  border-radius: 2px;
+  outline: none;
+  padding: 5px;
+}
+.major-content table tr td select {
+  width: 400px;
+  height: 30px;
+  border-radius: 2px;
+  outline: none;
+  padding: 5px;
+}
+.major-content .radio {
+  height: 18px;
+  width: 18px;
+}
+
+.student-list {
+  min-height: 400px;
+  max-height: 400px;
+  overflow: auto;
+}
+.student-list::-webkit-scrollbar {
+  width: 8px;
+}
+.student-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.student-list::-webkit-scrollbar-thumb {
+  background: #969191;
+}
+.student-list th {
+  padding-left: 25px;
+}
+
+.student-list td {
+  padding-left: 40px;
+  padding-top: 15px;
+  font-family: "Tomorrow", sans-serif;
+}
+.student-list td .action {
+  width: 100px;
+  height: 30px;
+}
+.student-list td .action3 {
+  color: #209e55;
+}
+.student-list td .action1 {
+  color: #8b60f3;
+}
+.student-list td .action2 {
+  color: #fc5b5c;
+}
+.spinner1 {
+  display: none;
+}
+.spinner2 {
+  display: none;
+}

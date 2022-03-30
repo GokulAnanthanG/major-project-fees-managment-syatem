@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@400;700;900&family=Tomorrow&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* The side sidebar igation menu */
+.sidebar {
+  height: 100%;
+  width: 200px;
+  background-color: #161827;
+  border-right: 0.2px solid rgba(128, 128, 128, 0.459);
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  overflow: auto;
+}
+
+/* Sidebar links */
+
+.sidebar .logo img {
+  width: 50%;
+  height: 100px;
+}
+.sidebar .logo p {
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+}
+.sidebar .menu-text {
+  margin-top: 30px;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  font-size: 14px;
+}
+.sidebar a {
+  text-decoration: none;
+  display: block;
+  font-family: "Poppins", sans-serif;
+  margin-top: 22.9px;
+  color: rgba(255, 255, 255, 0.575);
+  font-size: 14px;
+  margin-left: 41px;
+}
+.sidebar .active {
+  color: #fc5b5c;
+}
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #969191;
+}
+.content {
+  background-color: #292a3e;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+  padding-left: 220px;
+}
+.right-bar {
+  background-color: #fc5b5c;
+}
+.top .title {
+  color: #fff;
+  margin-top: 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.top input {
+  width: 200px;
+  height: 30px;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  padding: 3px;
+  border: 2px solid #86868b;
+}
+.top select {
+  height: 30px;
+  border: 3px solid #86868b;
+  outline: none;
+}
+.top button {
+  width: 50px;
+  height: 30px;
+  font-size: 15px;
+  background-color: transparent;
+  color: #86868b;
+}
+.top .inner-content1 {
+  width: 300px;
+  margin-left: auto;
+}
+.title {
+  color: rgba(255, 255, 255, 0.836);
+}
+.sub-title {
+  color: rgba(255, 255, 255, 0.582);
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+}
+.status-bar {
+  margin: 10px 5px 0 5px;
+  display: flex;
+  background-color: #494c5a;
+  padding: 10px;
+  font-family: "Oswald", sans-serif;
+  border-radius: 5px;
+}
+.status-bar table thead {
+  font-size: 18px;
+}
+.status-bar table tbody {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.836);
+}
+.status-bar table td {
+  padding: 8px;
+}
+.status-bar .box1 {
+  width: 50%;
+}
+.status-bar .box1 .title {
+  color: #52ae79;
+}
+.status-bar .box2 {
+  border-left: 2px solid rgba(255, 255, 255, 0.397);
+  padding-left: 20px;
+  border-radius: 2px;
+  border-top: none;
+  width: 50%;
+}
+.status-bar .box2 .title {
+  color: #8b60f3;
+}
+
+.department-status .box {
+  height: 170px;
+  width: 350px;
+  border-radius: 5px;
+  background-color: #494c5a;
+  padding: 20px;
+}
+.department-status .box .count {
+  font-size: 13px;
+  font-family: "Poppins", sans-serif;
+}
+.department-status .box .heading1 {
+  color: #52ae79;
+}
+.department-status .box .heading2 {
+  color: #fc5b5c;
+}
+.department-status .box p {
+  color: rgba(255, 255, 255, 0.89);
+  font-family: "Oswald", sans-serif;
+  text-align: center;
+}

@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@400;700;900&family=Tomorrow&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* The side sidebar igation menu */
+.sidebar {
+  height: 100%;
+  width: 200px;
+  background-color: #161827;
+  border-right: 0.2px solid rgba(128, 128, 128, 0.459);
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  overflow: auto;
+}
+
+/* Sidebar links */
+
+.sidebar .logo img {
+  width: 50%;
+  height: 100px;
+}
+.sidebar .logo p {
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+}
+.sidebar .menu-text {
+  margin-top: 30px;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  font-size: 14px;
+}
+.sidebar a {
+  text-decoration: none;
+  display: block;
+  font-family: "Poppins", sans-serif;
+  margin-top: 22.9px;
+  color: rgba(255, 255, 255, 0.575);
+  font-size: 14px;
+  margin-left: 41px;
+}
+.sidebar .active {
+  color: #fc5b5c;
+}
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #969191;
+}
+.content {
+  background-color: #292a3e;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+  padding-left: 220px;
+}
+
+.top-button {
+  width: 150px;
+  height: 30px;
+  font-family: "Poppins", sans-serif;
+}
+.top-button-active {
+  color: #fc5b5c;
+}
+.major-content {
+  margin-top: 10px;
+  width: 100%;
+  min-height: 70%;
+  border-radius: 5px;
+  background-color: #494c5a;
+  padding: 10px 20px;
+}
+.major-content table {
+  margin: auto;
+}
+.major-content table .radio {
+  height: 18px;
+  width: 18px;
+}
+.major-content table tr td {
+  padding: 10px 20px;
+}
+.major-content table tr td label {
+  font-family: "Poppins", sans-serif;
+  color: rgba(255, 255, 255, 0.76);
+}
+.major-content table tr td input {
+  width: 400px;
+  height: 30px;
+  border-radius: 2px;
+  outline: none;
+  padding: 5px;
+  text-transform: uppercase;
+}
+.major-content table tr td select {
+  width: 400px;
+  height: 30px;
+  border-radius: 2px;
+  outline: none;
+  padding: 5px;
+  text-transform: uppercase;
+}
+.major-content .radio {
+  height: 18px;
+  width: 18px;
+}
+.major-content .importBtn {
+  color: white;
+  width: 838px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #209e55;
+  text-align: center;
+  padding: 10px 0px;
+}
+.major-content .importBtn:active {
+  color: rgba(255, 255, 255, 0.76);
+  border-right: 1px solid #494c5a;
+  border-bottom: 1px solid #494c5a;
+}
+.major-content .addButton {
+  color: white;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  border-radius: 5px;
+  width: 100%;
+  height: 35px;
+  background-color: #4542dfdb;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  border: none;
+  outline: none;
+  -webkit-box-shadow: 5px 5px 6px -7px rgba(0, 0, 0, 0.37);
+  -moz-box-shadow: 5px 5px 6px -7px rgba(0, 0, 0, 0.37);
+  box-shadow: 5px 5px 6px -7px rgba(0, 0, 0, 0.37);
+  font-size: 15px;
+}
+.major-content .addButton:active {
+  color: rgba(255, 255, 255, 0.76);
+  border-right: 1px solid #494c5a;
+  border-bottom: 1px solid #494c5a;
+}
+.major-content #importData {
+  visibility: hidden;
+}
+.spinner-border {
+  display: none;
+}
