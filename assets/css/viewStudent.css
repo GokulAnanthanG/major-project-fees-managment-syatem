@@ -96,7 +96,15 @@
   border-radius: 2px;
   outline: none;
   padding: 5px;
-  font-weight: bold;
+  text-transform: uppercase;
+}
+.table-box .nav-table tr td select {
+  width: 400px;
+  height: 30px;
+  border-radius: 2px;
+  outline: none;
+  padding: 5px;
+  text-transform: uppercase;
 }
 .table-box .nav-table .shortInp {
   outline: none;

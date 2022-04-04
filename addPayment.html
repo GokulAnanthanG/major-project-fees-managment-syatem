@@ -258,6 +258,8 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
  <!--jquery-->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script>$(document).ready(()=>{
+   $("#batch").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch);
+    $("#sem").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).sem)
    $(".button2").click(()=>{
      var rollNoStatus=false,regNoStatus=false,batchStatus=false,semStatus=false,nameStatus=false,departmentStatus=false,dateStatus=false;
       if($("#rollNo").val()!=""){
@@ -628,7 +630,7 @@ lastReceiptNo = JSON.parse(lastReceiptNo)
 //have to pay 
 $("#collegeFeesHaveToPay").val(Number(semFees)-Number(collegeFeesPayed));
 $("#skillFeesHaveToPay").val(Number(skillFees)-Number(skillFeesPayed));
-$("#busOrVanFeesHaveToPay").val(Number(studentData.vanOrBusFees)-Number(busOrVanFeesPayed));
+$("#busOrVanFeesHaveToPay").val(Number(studentData.vanOrBusFees*6)-Number(busOrVanFeesPayed));
 $("#otherFeesHaveToPay").val(Number(otherFees)-Number(otherFeesPayed));
 $("#finePayed").val(Number(studentData.fine)-Number(finePayed));
 //payed

@@ -1,6 +1,6 @@
 <?php
 include"config.php";
-$sql="SELECT * FROM batchfees ORDER BY batch DESC";
+$sql="SELECT * FROM staff WHERE name   LIKE '{$_POST["name"]}%'";
 $res=$con->query($sql);
 $data=array();
 if($res->num_rows>0){

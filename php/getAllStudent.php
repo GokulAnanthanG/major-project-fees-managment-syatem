@@ -1,7 +1,8 @@
 <?php
 include"config.php";
-$sql="SELECT * FROM batchfees ORDER BY batch DESC";
-$res=$con->query($sql);
+$batch="students".$_POST["batch"];
+$sql="SELECT * FROM $batch  ORDER BY department ASC";
+if($res=$con->query($sql)){
 $data=array();
 if($res->num_rows>0){
     while($obj=$res->fetch_assoc()){
@@ -10,6 +11,10 @@ array_push($data, $obj);
     echo  json_encode($data);
     }
 else{
-    echo 0;
+    echo 00;
+}
+}
+else{
+    echo 00;
 }
 ?>

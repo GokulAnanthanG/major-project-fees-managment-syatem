@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@400;700;900&family=Tomorrow&display=swap");
+
+body{
+    background-color: #292a3e;
+    min-height: 100vh;
+    padding: 20px;
+    color: white;
+    font-family: "Poppins", sans-serif;
+}
+
+.title {
+    color: #fff;
+    margin-top: 20px;
+    font-family: "Poppins", sans-serif;
+  }
+  h2{
+        font-family: "Poppins", sans-serif;
+  }
+  h4{
+    font-family: "Oswald", sans-serif;
+  }
+  table{
+    color: #fff;
+
+  }
+  .spinner1{
+      display: none;
+  }
+  input{
+    width: 300px;
+    height: 30px;
+  }
+   select{
+     width: 300px;
+     height: 30px;
+   }
+   .shortInpu{
+    width: 148px;
+    height: 30px;
+   }
+   .shortSele{
+    width: 148px;
+    height: 30px;
+   }
+  .radio {
+    height: 18px;
+    width: 18px;
+  }

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSB FESS MANAGEMENT SYSTEM | ADMIN View Student Record</title>
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+    <!--font awesome cdn-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!--bootsrap-->
+    <!--alert library-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <!--css-->
+    <link rel="stylesheet" href="./assets/css/viewStudentRecord.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h3 class="title mt-5">
+        <i class="fa fa-user"></i>&nbsp;<span class="name"></span> Record
+      </h3>
+      <div class="row">
+        <div class="col-lg-6">
+          <center><i class="spinner-border spinner1"></i></center>
+          <table class="table mt-5" style="color: white">
+            <tr>
+              <th>Name</th>
+              <td class="name">--</td>
+            </tr>
+            <tr>
+              <th>Registration No</th>
+              <td id="regNo">--</td>
+            </tr>
+            <tr>
+              <th>Roll No</th>
+              <td id="rollNo">--</td>
+            </tr>
+            <tr>
+              <th>Batch</th>
+              <td id="batch">--</td>
+            </tr>
+            <tr></tr>
+            <tr>
+              <th>Gender</th>
+              <td id="gender">--</td>
+            </tr>
+            <tr>
+              <th>Department</th>
+              <td id="department">--</td>
+            </tr>
+            <tr>
+              <th>Van Or Bus Fees</th>
+              <td id="vanOrBusFees">--</td>
+            </tr>
+            <tr>
+              <th>Skill</th>
+              <td id="skill">--</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td id="status">--</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-lg-6">
+          <center>
+            <br />
+            <img class="img-fluid mt-5" src="./assets/images/logo.png" alt="" />
+            <h3>SSB</h3>
+            <h4>Fees Management System</h4>
+            <br />
+            <a href="viewStudent.html">
+              <button class="btn btn-primary">
+                <i class="fa fa-arrow-left"></i>
+                &nbsp; Back
+              </button></a
+            >
+          </center>
+        </div>
+        <!--row-->
+      </div>
+
+      <!--container-->
+    </div>
+  </body>
+  <!-- JavaScript Bundle with Popper -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"
+  ></script>
+  <!--jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      $(".spinner1").css({ display: "inline-block" });
+      var params = new window.URLSearchParams(window.location.search);
+      var rollNo = params.get("rollNo");
+      var batch = params.get("batch");
+      console.log(batch, rollNo);
+      $.ajax({
+        type: "POST",
+        url: "./php/getInduvidualStudent.php",
+        data: { batch: batch, rollNo: rollNo },
+        success: (data) => {
+          console.log(data);
+          if (data != 0) {
+            $(".spinner1").css({ display: " none" });
+            var data = JSON.parse(data);
+            data = data[0];
+            $(".name").html(data.name);
+            $("#regNo").html(data.regNo);
+            $("#rollNo").html(data.rollNo);
+            $("#batch").html(data.batch);
+            $("#gender").html(data.gender);
+            $("#department").html(data.department);
+            $("#vanOrBusFees").html(data.vanOrBusFees);
+            $("#skill").html(data.skill);
+            $("#status").html(data.status);
+            if (data.status == "active") $("#status").css("color", "green");
+            else $("#status").css("color", "orange");
+          } else {
+            $(".spinner1").css({ display: " none" });
+            swal("oops something went wrong :(", " ", "error");
+          }
+        },
+        error: (err) => {
+          $(".spinner1").css({ display: " none" });
+          swal("oops something went wrong :(", " ", "error");
+        },
+      });
+    });
+  </script>
+</html>

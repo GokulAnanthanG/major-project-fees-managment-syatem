@@ -129,13 +129,9 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
     <div class="student-list">
      <center> <i class="spinner-border spinner1"></i></center>
         <table class="student-list-table" id="student-list-table">
-            <tr> <th>Batch</th> <th>Department</th> <th>sem Fees</th></tr>
-              
-            
-            
+         
         </table>
-        <center> <i class="spinner-border spinner2"></i></center>
-
+ 
 </div>
        <!---end major content-->
 </div>
@@ -156,6 +152,8 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   $(document).ready(()=>{
+  function getBatchFees(){
+    $(".student-list-table").empty().append("   <tr> <th>Batch</th> <th>Department</th> <th>sem Fees</th></tr>");
     $(".spinner1").css({ display: "inline-block" });
     var lastId=0;
      $.ajax({
@@ -174,49 +172,77 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
             });
           }
           else if(data==00){
+            $(".student-list-table").empty();
+            $(".spinner1").css({ display: "none" });
             $(".student-list-table").append(`<tr><td colspan='5'><p align="center">No Records</p></td></tr>`);
           }
         },
         error:(err)=>{
           console.log(err);
+          $(".spinner1").css({ display: "none" });
           swal("oops something went wrong :(", " ", "error");
         }
     })
+  }//fn
+  getBatchFees();
+//delete
 
-    //scroll
-    $(".student-list").on('scroll',()=>{
-         if($(".student-list").scrollTop()+235==$(".student-list").outerHeight()){
-          console.log("end",lastId);
+$(document).on("click",".action2",function(){
 
-          $(".spinner2").css({ display: "inline-block" });
-          $.ajax({
-      type: "POST",
-        url: "./php/getBatchFeesWhilScroll.php",
-        data:{id:lastId},
-        success: (data) => {
-          $(".spinner2").css({ display: "none" });
-          if(data!=00){
-            var data =JSON.parse(data)
-            data.forEach(e => {
-              lastId=e.id;
-                 $(".student-list-table").append(`<tr><td>${e.batch}</td><td>${e.department}</td><td>${e.semFees}</td>
-                  <td><button eid='${e.id}' title="view other fees" class="action action3"><i class="fa fa-eye"></i></button></td>
-                  <td><button eid='${e.id}' title="edit record" class="action action1"><i class="fa fa-pencil"></i></button></td>
-              <td><button title="delete permanently" eid='${e.id}' class="action action2"><i class="fa fa-trash"></i></button></td><tr>`)
-            });
+var delId=$(this).attr("eid");
+swal({
+title: "Are you sure?",
+text: "Once deleted, unable to recover this record ",
+icon: "warning",
+buttons: true,
+dangerMode: true,
+})
+.then((willDelete) => {
+if (willDelete) {
+
+  $(".spinner1").css({ display: "inline-block" });
+  var batch=   JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch;
+  $.ajax({
+    type: "POST",
+      url: "./php/deleteBatchFees.php",
+      data:{batch:batch,id:delId},
+      success:(data)=>{ 
+          if(data!=0){
+            getBatchFees();
+            swal("record has been deleted!", {
+    icon: "success",
+  });
+            $(".spinner1").css({ display: "none" });
           }
-          else if(data==00){
-            $(".student-list-table").append(`<tr><td colspan='6'><p align="center">No Records</p></td></tr>`);
+          else{
+            $(".spinner1").css({ display: "none" });
+            swal("oops something went wrong :(", " ", "warning"); 
           }
-        },
-        error:(err)=>{
-          console.log(err);
-          swal("oops something went wrong :(", " ", "error");
-        }
-    })
-        }//if
-     })//scroll
-   })
+  },
+  error:(err)=>{
+    $(".spinner1").css({ display: "none" });
+    swal("oops something went wrong :(", " ", "warning");
+  }
+})//ajax
+ 
+} else {
+  swal("this record is safe!");
+}
+});
+})//delete 
+
+//view stdudent
+$(document).on("click",".action3",function (){
+var id=$(this).attr("eid");
+ window.location.replace(`viewBatchFeesRecord.html?id=${id}`);
+})
+//edit
+$(document).on("click",".action1",function (){
+var id=$(this).attr("eid");
+window.location.replace(`editBatchFeesRecord.html?id=${id}`);
+})
+
+        })
 </script>
 </body>
   

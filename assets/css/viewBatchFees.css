@@ -99,6 +99,7 @@
   border-radius: 2px;
   outline: none;
   padding: 5px;
+  text-transform: uppercase;
 }
 .major-content table tr td select {
   width: 400px;
@@ -106,6 +107,7 @@
   border-radius: 2px;
   outline: none;
   padding: 5px;
+  text-transform: uppercase;
 }
 .major-content .radio {
   height: 18px;
