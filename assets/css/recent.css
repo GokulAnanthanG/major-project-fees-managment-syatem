@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@400;700;900&family=Tomorrow&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* The side sidebar igation menu */
+.sidebar {
+  height: 100%;
+  width: 200px;
+  background-color: #161827;
+  border-right: 0.2px solid rgba(128, 128, 128, 0.459);
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  overflow: auto;
+}
+
+/* Sidebar links */
+
+.sidebar .logo img {
+  width: 50%;
+  height: 100px;
+}
+.sidebar .logo p {
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+}
+.sidebar .menu-text {
+  margin-top: 30px;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  font-size: 14px;
+}
+.sidebar a {
+  text-decoration: none;
+  display: block;
+  font-family: "Poppins", sans-serif;
+  margin-top: 22.9px;
+  color: rgba(255, 255, 255, 0.575);
+  font-size: 14px;
+  margin-left: 41px;
+}
+.sidebar .active {
+  color: #fc5b5c;
+}
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: #969191;
+}
+.content {
+  background-color: #292a3e;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+  padding-left: 220px;
+}
+
+ 
+.major-content {
+  margin-top: 10px;
+  width: 100%;
+  min-height: 410px;
+  max-height: 410px;
+  overflow: auto;
+  border-radius: 5px;
+  background-color: #494c5a;
+  padding: 5px;
+ }
+  .action2 {
+    height: 30px;
+    width: 100px;
+  }
+  .fa-trash{
+    color: #fc5b5c;
+  }
+ 
+  .major-content::-webkit-scrollbar {
+  width: 8px;
+}
+.major-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.major-content::-webkit-scrollbar-thumb {
+  background: #969191;
+}
+.spinner1{
+  display: none;
+}
+input:nth-child(1){
+  width: 300px;
+  padding: 2px;
+  outline: none;
+}
+.search-btn{
+  width: 100px;
+  height: 33px;
+}
