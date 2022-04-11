@@ -374,8 +374,9 @@ let semFeesStatus=false,skillFeesstatus=false,otherFeesStatus=false,vanOrBusFees
 semFeesPayed+=Number(e.collegeFees);
 skillFeesPayed+=Number(e.skillFees);
 vanOrBusFeesPayed+=Number(e.busOrVanFees);
-otherFeesPayed+=Number(otherFeesPayed);
-  });//for each
+otherFeesPayed+=Number(e.otherFees);
+   });//for each
+  alert(otherFeesPayed)
 /* status check */
 if(semFees==semFeesPayed){
   semFeesStatus=true;
@@ -559,6 +560,7 @@ try{
   `)
   studentPaymentTable.push(calcedData);
   $("#status4").html(" "); 
+  console.log(studentPaymentTable);
 }
 catch(err){
   console.log(err);

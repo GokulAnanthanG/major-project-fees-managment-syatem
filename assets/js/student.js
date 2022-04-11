@@ -74,57 +74,103 @@ $(document).ready(() => {
     }
     //gender
     //condition
-
-    if (
-      regNoStatus &&
-      rollNoStatus &&
-      nameStatus &&
-      batchStatus &&
-      departmentStatus &&
-      vanOrBusFeesStatus &&
-      genderStatus &&
-      skillStatus
-    ) {
+    if (String(fileNameChosed).length == 0) {
+      if (
+        regNoStatus &&
+        rollNoStatus &&
+        nameStatus &&
+        batchStatus &&
+        departmentStatus &&
+        vanOrBusFeesStatus &&
+        genderStatus &&
+        skillStatus
+      ) {
+        swal("Are you sure you want to do this?", {
+          buttons: ["cancel", true],
+        }).then((data) => {
+          if (data) {
+            $(".spinner-border").css({ display: "inline-block" });
+            $(".btnText").css({ display: "none" });
+            $.ajax({
+              type: "POST",
+              url: "./php/addStudent.php",
+              data: $("#frm").serialize(),
+              success: (data) => {
+                console.log(data);
+                if (data == 1) {
+                  swal({
+                    title: "student added",
+                    icon: "success",
+                    button: "ok",
+                  });
+                  $(".spinner-border").css({ display: "none" });
+                  $(".btnText").css({ display: "inline-block" });
+                  $("#frm")[0].reset();
+                } else {
+                  $(".spinner-border").css({ display: "none" });
+                  $(".btnText").css({ display: "inline-block" });
+                  swal("oops something went wrong :(", " ", "error");
+                }
+              },
+              error: (err) => {
+                console.log(err);
+                swal("oops something went wrong :(", " ", "error");
+                $(".spinner-border").css({ display: "none" });
+                $(".btnText").css({ display: "inline-block" });
+              },
+            });
+          }
+        }); //swal
+      } else {
+        swal("please fill all the fields", " ", "warning");
+      }
+    } //if
+    else {
       swal("Are you sure you want to do this?", {
         buttons: ["cancel", true],
       }).then((data) => {
-        if (data) {
+        if (data == true) {
           $(".spinner-border").css({ display: "inline-block" });
           $(".btnText").css({ display: "none" });
+          var formdata = new FormData();
+          formdata.append("file", FileExcelFile);
+          formdata.append("fileStatus", true);
           $.ajax({
-            type: "POST",
-            url: "./php/addStudent.php",
-            data: $("#frm").serialize(),
+            method: "post",
+            url: "./php/addStudentThroughExcel.php",
+            data: formdata,
+            contentType: false,
+            processData: false,
             success: (data) => {
-              console.log(data);
               if (data == 1) {
+                $(".spinner-border").css({ display: "none" });
+                $(".btnText").css({ display: "inline-block" });
+                fileNameChosed = " ";
+                FileExcelFile = " ";
                 swal({
-                  title: "student added",
+                  title: "students added",
                   icon: "success",
                   button: "ok",
                 });
-                $(".spinner-border").css({ display: "none" });
-                $(".btnText").css({ display: "inline-block" });
-                $("#frm")[0].reset();
               } else {
                 $(".spinner-border").css({ display: "none" });
                 $(".btnText").css({ display: "inline-block" });
-                swal("oops something went wrong :(", " ", "error");
+                swal(
+                  "oops something went wrong :( failed to add the students",
+                  " ",
+                  "error"
+                );
               }
             },
             error: (err) => {
-              console.log(err);
-              swal("oops something went wrong :(", " ", "error");
-              $(".spinner-border").css({ display: "none" });
-              $(".btnText").css({ display: "inline-block" });
+              swal("oops something went wrong", " ", "error");
             },
-          });
+          }); //ajax
         }
-      }); //swal
-    } else {
-      swal("please fill all the fields", " ", "warning");
-    }
+      }); //promise
+    } //else
   }); //button
+
   //getSkills
   $("#batch").keyup(function () {
     $("#skill").html("<option value=''>--</option>");
@@ -159,4 +205,15 @@ $(document).ready(() => {
       },
     });
   });
+  //file change
+  var fileNameChosed = "";
+  var FileExcelFile;
+  $("#importData").change((e) => {
+    fileNameChosed = "";
+    $("#fileName").html("");
+    FileExcelFile = $("#importData")[0].files[0];
+    fileNameChosed = $("#importData")[0].files[0].name;
+    $("#fileName").html(fileNameChosed);
+    $("#importData")[0].files[0];
+  }); //file change
 });
