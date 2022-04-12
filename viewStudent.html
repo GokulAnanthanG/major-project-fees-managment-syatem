@@ -99,7 +99,7 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
           <a href="setting.html" title="add sem fees for department , skill fees and rest pass">
             <i class="fa fa-gear"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>
           </a>
-          <a href="#">
+          <a href="#" id="logout">
             <i class="fa-solid fa-right-from-bracket" title="logout"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Logout</span>
           </a>
     </div>
@@ -201,10 +201,41 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   $(document).ready(()=>{
-    $("#batch").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch)
+
+
+    try {
+  if(JSON.parse(localStorage.getItem("FMSUsEr")).pos!="nimda"){
+   window.location.href="index.html";
+  }
+} catch (error) {
+  window.location.href="index.html";
+}
+$("#logout").click(()=>{
+
+  swal("Are you sure you want to do this?", {
+  buttons: ["cancel", true],
+}).then((data)=>{
+  if(data==true){
+    localStorage.removeItem("FMSUsEr");
+window.location.href="index.html";
+  }
+
+
+})
+
+})
+
+
+
+try {
+     var batch=   JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch;
+} catch (error) {
+  swal("set the batch and sem", " ", "error");
+}
+  
     function getAllStudent(){
       $(".spinner1").css({ display: "inline-block" });
-   var batch=   JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch;
+   
      $.ajax({
       type: "POST",
         url: "./php/getAllStudent.php",

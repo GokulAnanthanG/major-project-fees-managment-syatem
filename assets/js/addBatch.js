@@ -1,4 +1,22 @@
 $(document).ready(() => {
+  try {
+    if (JSON.parse(localStorage.getItem("FMSUsEr")).pos != "nimda") {
+      window.location.href = "index.html";
+    }
+  } catch (error) {
+    window.location.href = "index.html";
+  }
+  $("#logout").click(() => {
+    swal("Are you sure you want to do this?", {
+      buttons: ["cancel", true],
+    }).then((data) => {
+      if (data == true) {
+        localStorage.removeItem("FMSUsEr");
+        window.location.href = "index.html";
+      }
+    });
+  });
+
   var batchStatus = false,
     departmentStatus = false,
     semFeesStaus = false,

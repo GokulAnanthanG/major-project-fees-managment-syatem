@@ -99,7 +99,7 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
           <a href="setting.html" title="add sem fees for department , skill fees and rest pass">
             <i class="fa fa-gear"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>
           </a>
-          <a href="#">
+          <a href="#" id="logout">
             <i class="fa-solid fa-right-from-bracket" title="logout"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Logout</span>
           </a>
     </div>
@@ -216,7 +216,7 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
     <td><label class="heading-red" for="fineHaveToPay">Fine Have To Pay</label><br>
         <input value="0"   type="number" autocomplete="off" id="fineHaveToPay">
         </td>
-        <td colspan="3"><label class="heading-green" for="finePayed">Fine Payed</label><br>
+        <td  colspan="3" style="visibility: hidden;"><label class="heading-green" for="finePayed">Fine Payed</label><br>
             <input  value="0"    type="number" autocomplete="off" id="finePayed">
             </td>
 </tr>
@@ -258,6 +258,33 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
  <!--jquery-->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script>$(document).ready(()=>{
+
+
+try {
+  if(JSON.parse(localStorage.getItem("FMSUsEr")).pos!="nimda"){
+   window.location.href="index.html";
+  }
+} catch (error) {
+  window.location.href="index.html";
+}
+$("#logout").click(()=>{
+
+  swal("Are you sure you want to do this?", {
+  buttons: ["cancel", true],
+}).then((data)=>{
+  if(data==true){
+    localStorage.removeItem("FMSUsEr");
+window.location.href="index.html";
+  }
+
+
+})
+
+})
+
+
+
+
    $("#batch").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch);
     $("#sem").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).sem)
    $(".button2").click(()=>{

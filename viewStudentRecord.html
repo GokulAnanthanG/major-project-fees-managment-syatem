@@ -110,6 +110,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     $(document).ready(() => {
+      try {
+        if (JSON.parse(localStorage.getItem("FMSUsEr")).pos != "nimda") {
+          window.location.href = "index.html";
+        }
+      } catch (error) {
+        window.location.href = "index.html";
+      }
+      $("#logout").click(() => {
+        swal("Are you sure you want to do this?", {
+          buttons: ["cancel", true],
+        }).then((data) => {
+          if (data == true) {
+            localStorage.removeItem("FMSUsEr");
+            window.location.href = "index.html";
+          }
+        });
+      });
+
       $(".spinner1").css({ display: "inline-block" });
       var params = new window.URLSearchParams(window.location.search);
       var rollNo = params.get("rollNo");

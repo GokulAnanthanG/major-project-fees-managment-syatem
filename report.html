@@ -105,7 +105,7 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
           <a href="setting.html" title="add sem fees for department , skill fees and rest pass">
             <i class="fa fa-gear"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>
           </a>
-          <a href="#">
+          <a href="#" id="logout">
             <i class="fa-solid fa-right-from-bracket" title="logout"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Logout</span>
           </a>
     </div>
@@ -173,7 +173,34 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
 
 <script>
     $(document).ready(function () {
-        try{
+
+
+      try {
+  if(JSON.parse(localStorage.getItem("FMSUsEr")).pos!="nimda"){
+   window.location.href="index.html";
+  }
+} catch (error) {
+  window.location.href="index.html";
+}
+$("#logout").click(()=>{
+
+  swal("Are you sure you want to do this?", {
+  buttons: ["cancel", true],
+}).then((data)=>{
+  if(data==true){
+    localStorage.removeItem("FMSUsEr");
+window.location.href="index.html";
+  }
+
+
+})
+
+})
+      
+
+      var unPayed=[];
+var payed=[];
+  try{
     $("#batch").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch);
     $("#sem").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).sem)
    }
@@ -364,53 +391,21 @@ return Promise.reject("something went wrong")
 
 
 /* payment history calculation */
-
+unPayed=[],payed=[];
 function paymentHistoryCalc(history,semFees,studentDetail,finePayed,skillFees,otherFees){
  var obj;
 let semFeesPayed=0,skillFeesPayed=0,vanOrBusFeesPayed=0,otherFeesPayed=0;
-let semFeesStatus=false,skillFeesstatus=false,otherFeesStatus=false,vanOrBusFeesStatus=false,fineStatus=false;
-  if(history!=0){
+   if(history!=0){
     history.forEach(e => {
 semFeesPayed+=Number(e.collegeFees);
 skillFeesPayed+=Number(e.skillFees);
 vanOrBusFeesPayed+=Number(e.busOrVanFees);
 otherFeesPayed+=Number(e.otherFees);
    });//for each
-  alert(otherFeesPayed)
-/* status check */
-if(semFees==semFeesPayed){
-  semFeesStatus=true;
-}
-else{
-  semFeesStatus=false;
-}
-if(skillFees==skillFeesPayed){
-  skillFeesstatus=true;
-}
-else{
-  skillFeesstatus=false;
-}
-if(otherFees==otherFeesPayed){
-  otherFeesStatus=true;
-}
-else{
-  otherFeesStatus=false;
-}
-if(studentDetail.vanOrBusFees==vanOrBusFeesPayed){
-  vanOrBusFeesStatus=true;
-}
-else{
-  vanOrBusFeesStatus=false;
-}
-if(studentDetail.fine==finePayed){
-  fineStatus=true;
-}
-else{
-  fineStatus=false;
-}
+  
+ 
 
-/*end status check */
-
+ 
   obj={
     name:studentDetail.name,
     regNo:studentDetail.regNo,
@@ -428,11 +423,7 @@ else{
     otherFeesPayed:otherFeesPayed,
     otherFeesHaveToPay:otherFees-otherFeesPayed,
     fine:studentDetail.fine-finePayed,
-    semFeesStatus:semFeesStatus,
-    skillFeesstatus:skillFeesstatus,
-    otherFeesStatus:otherFeesStatus,
-    vanOrBusFeesStatus:vanOrBusFeesStatus,
-    fineStatus:fineStatus,
+    
   }
   }//if
   else if(history==0){
@@ -453,11 +444,7 @@ obj={
     otherFeesPayed:otherFeesPayed,
     otherFeesHaveToPay:otherFees-otherFeesPayed,
     fine:studentDetail.fine-finePayed,
-    semFeesStatus:semFeesStatus,
-    skillFeesstatus:skillFeesstatus,
-    otherFeesStatus:otherFeesStatus,
-    vanOrBusFeesStatus:vanOrBusFeesStatus,
-    fineStatus:fineStatus,
+    
 }
   }
 return Promise.resolve(obj);
@@ -466,6 +453,7 @@ return Promise.resolve(obj);
 /*end paument history calculation */
 /* start function process */
 var skillFetchStaus=false;
+
 async function process(){
 
 //pro getting batch
@@ -544,24 +532,32 @@ try{
   var calcedData= await paymentHistoryCalc(payment,_$semFees,student,_$overallFinePayed,_$skillFees,_$otherFees);
   $("#report-table tbody").append(`
   <tr>
-        <td>${calcedData.name}</td>
-        <td>${calcedData.regNo}</td>
-        <td>${calcedData.department}</td>  
-        <td>${calcedData.semFeesHaveToPay}</td>
-        <td>${calcedData.semFeesPayed}</td>
-        <td>${calcedData.skillFeesHaveToPay}</td>
-        <td>${calcedData.skillFeesPayed}</td>
-        <td>${calcedData.vanOrBusFeesHaveToPay}</td>
-        <td>${calcedData.vanOrBusFeesPayed}</td>
-        <td>${calcedData.otherFeesHaveToPay}</td>
-        <td>${calcedData.otherFeesPayed}</td>
-        <td>${calcedData.fine}</td>
+        <td title='student name' class='bg-secondary'>${calcedData.name}</td>
+        <td title='registration no' class='bg-primary'>${calcedData.regNo}</td>
+        <td title='department' class='bg-info'>${calcedData.department}</td>  
+        <td title='sem fees have to pay' class='bg-warning'>${calcedData.semFeesHaveToPay}</td>
+        <td title='sem fees payed' class='bg-success'>${calcedData.semFeesPayed}</td>
+        <td title='skill fees have to pay' class='bg-warning'>${calcedData.skillFeesHaveToPay}</td>
+        <td title='skill fess payed' class='bg-success'>${calcedData.skillFeesPayed}</td>
+        <td title='van or bus fees have to pay' class='bg-warning'>${calcedData.vanOrBusFeesHaveToPay}</td>
+        <td title='van or bus fees payed' class='bg-success'>${calcedData.vanOrBusFeesPayed}</td>
+        <td title='other fees have to pay' class='bg-warning'>${calcedData.otherFeesHaveToPay}</td>
+        <td title='other fees payed' class='bg-success'>${calcedData.otherFeesPayed}</td>
+        <td title='fine have to pay' class='bg-danger'>${calcedData.fine}</td>
          </tr>
-  `)
-  studentPaymentTable.push(calcedData);
-  $("#status4").html(" "); 
-  console.log(studentPaymentTable);
-}
+  `);
+   studentPaymentTable.push(calcedData);
+   $("#status4").html(" "); 
+//filterUnpayed
+  if(calcedData.semFees==calcedData.semFeesPayed&&calcedData.skillFees==calcedData.skillFeesPayed&&calcedData.vanOrBusFees==calcedData.vanOrBusFeesPayed&&Number(calcedData.otherFees)==Number(calcedData.otherFeesPayed)&&calcedData.fine==0){
+    payed.push(calcedData);
+} 
+ else{
+ unPayed.push(calcedData);
+  }
+//end filter unpayed
+
+ }
 catch(err){
   console.log(err);
  $("#status4").html("failed to get payment history");
@@ -570,8 +566,6 @@ catch(err){
 
 });//foreach
 /*---end calc---*/
-
-
 }
 process();
 /* end function process */
@@ -582,7 +576,28 @@ process();
     swal("please enter the batch ,sem,and departmnet", " ", "warning");
 })//search
     
-
+//filter unpayed
+$(".button2").click(()=>{
+  $("#report-table tbody").empty();
+unPayed.forEach(element => {console.log(element);
+  $("#report-table tbody").append(`
+  <tr>
+    <td title='student name' class='bg-secondary'>${element.name}</td>
+        <td title='registration no' class='bg-primary'>${element.regNo}</td>
+        <td title='department' class='bg-info'>${element.department}</td>  
+        <td title='sem fees have to pay' class='bg-warning'>${element.semFeesHaveToPay}</td>
+        <td title='sem fees payed' class='bg-success'>${element.semFeesPayed}</td>
+        <td title='skill fees have to pay' class='bg-warning'>${element.skillFeesHaveToPay}</td>
+        <td title='skill fess payed' class='bg-success'>${element.skillFeesPayed}</td>
+        <td title='van or bus fees have to pay' class='bg-warning'>${element.vanOrBusFeesHaveToPay}</td>
+        <td title='van or bus fees payed' class='bg-success'>${element.vanOrBusFeesPayed}</td>
+        <td title='other fees have to pay' class='bg-warning'>${element.otherFeesHaveToPay}</td>
+        <td title='other fees payed' class='bg-success'>${element.otherFeesPayed}</td>
+        <td title='fine have to pay' class='bg-danger'>${element.fine}</td>
+         </tr>
+  `);
+});
+})//btn2
     });
 </script>
  

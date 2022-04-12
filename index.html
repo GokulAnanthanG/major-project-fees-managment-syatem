@@ -12,7 +12,8 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
-
+    <!--alert library-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!--font awesome cdn-->
     <link
       rel="stylesheet"
@@ -68,5 +69,67 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous"
     ></script>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(() => {
+        try {
+          if (JSON.parse(localStorage.getItem("FMSUsEr")).pos == "nimda") {
+            window.location.href = "dashBoard.html";
+          }
+        } catch (err) {}
+
+        $(".btn").click(() => {
+          var userNameStatus = false,
+            PasswordStatus = false;
+          if ($("#userName").val() != "") {
+            userNameStatus = true;
+            $("#userName").css("border", "1px solid #CED4DA");
+          } else {
+            $("#userName").css("border", "1px solid red");
+            userNameStatus = false;
+          }
+          if ($("#password").val() != "") {
+            PasswordStatus = true;
+            $("#password").css("border", "1px solid #CED4DA");
+          } else {
+            $("#password").css("border", "1px solid red");
+            PasswordStatus = false;
+          }
+
+          //condition
+
+          if (userNameStatus && PasswordStatus) {
+            $.ajax({
+              method: "POST",
+              url: "./php/checkAdLogin.php",
+              data: {
+                userName: $("#userName").val(),
+                password: $("#password").val(),
+              },
+              success: (data) => {
+                if (data == 1) {
+                  localStorage.setItem(
+                    "FMSUsEr",
+                    JSON.stringify({ nAmeUSer: "nimda", pos: "nimda" })
+                  );
+                  location.replace("dashBoard.html");
+                } else if (data == 0) {
+                  alert("invalid user name password");
+                } else {
+                  alert("oops something went wrong");
+                }
+              },
+              error: (err) => {
+                console.log(err);
+                alert("oops something went wrong");
+              },
+            }); //ajax
+          } else {
+            alert("please enter the user name and password");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

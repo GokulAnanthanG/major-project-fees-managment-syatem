@@ -138,6 +138,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script>
     $(document).ready(() => {
+      try {
+        if (JSON.parse(localStorage.getItem("FMSUsEr")).pos != "nimda") {
+          window.location.href = "index.html";
+        }
+      } catch (error) {
+        window.location.href = "index.html";
+      }
+
       var rollNo;
       var batch;
       function getStudet() {

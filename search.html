@@ -99,7 +99,7 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
           <a   href="setting.html" title="add sem fees for department , skill fees and rest pass">
             <i class="fa fa-gear"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>
           </a>
-          <a href="#">
+          <a href="#" id="logout">
             <i class="fa-solid fa-right-from-bracket" title="logout"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Logout</span>
           </a>
     </div>
@@ -182,6 +182,31 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
   $(document).ready(()=>{
+
+
+    try {
+  if(JSON.parse(localStorage.getItem("FMSUsEr")).pos!="nimda"){
+   window.location.href="index.html";
+  }
+} catch (error) {
+  window.location.href="index.html";
+}
+$("#logout").click(()=>{
+
+  swal("Are you sure you want to do this?", {
+  buttons: ["cancel", true],
+}).then((data)=>{
+  if(data==true){
+    localStorage.removeItem("FMSUsEr");
+window.location.href="index.html";
+
+  }
+
+})
+
+})
+
+
       $(".total table").fadeOut();
   var batch;
         try{
@@ -252,7 +277,7 @@ var collgeFees=0,skillFees=0,busOrVanFees=0,otherFees=0,fine=0;
 
         $(".spinner-border").css({ display: "none" });
       }else if(data==0){
-        swal("no payments yet i this semester", " ", "warning");
+        swal("no payments yet in this semester", " ", "warning");
     $(".spinner-border").css({ display: "none" });
       }
       else  swal("oops something went wrong", " ", "warning");
