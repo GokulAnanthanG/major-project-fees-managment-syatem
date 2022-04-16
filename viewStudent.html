@@ -229,6 +229,7 @@ window.location.href="index.html";
 
 try {
      var batch=   JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch;
+     $("#batch").val(batch)
 } catch (error) {
   swal("set the batch and sem", " ", "error");
 }

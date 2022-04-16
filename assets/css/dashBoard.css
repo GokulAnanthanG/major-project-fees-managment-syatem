@@ -120,7 +120,7 @@
   color: rgba(255, 255, 255, 0.836);
 }
 .status-bar table td {
-  padding: 8px;
+  padding: 15px 13px;
 }
 .status-bar .box1 {
   width: 50%;
