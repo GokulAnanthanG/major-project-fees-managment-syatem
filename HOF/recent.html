@@ -1,0 +1,393 @@
+<!-- MAJOR PROJECT FESS MANAGEMENT SYSTEM -->
+<!-- TEAM -->
+<!--
+    ****************
+    G.GOKUL ANANTHAN
+    N.PREM
+    N.SATHISH KUMAR
+    S.SUDHAKAR
+    ****************
+UNDER THE GUIDANCE OF
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+MR.Ashok Lingam Sir & MR.Karuppasamy sir
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--font awesome cdn-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+   
+    <!--chart-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+      integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!--bootsrap-->
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <!--alert library-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ <!--css-->
+ <link rel="stylesheet" href="../assets/css/recent.css" />
+ <link
+   rel="shortcut icon"
+   href="../assets/images/favicon.ico"
+   type="image/x-icon"
+ />
+    <title>SSB FESS MANAGEMENT SYSTEM | Recent Payments</title>
+  </head>
+  <body> 
+    <!-- The sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <center>
+              <img class="img-responsive" src="../assets/images/logo.png" alt="" />
+              <p>SSB</p>
+            </center>
+            <center>
+              <i class="fa fa-user-circle profileIcon"></i>
+              <p class="userName">
+                <p  id="logDate"></p> 
+              </p>
+            </center>
+          </div>
+          <p class="menu-text">Menu</p>
+        
+        <a  href="dashboard.html">
+            <i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Home</span>
+          </a>
+          <a  href="addPayment.html" title="add fees payments">
+            <i class="fa fa-add"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Fees</span>
+          </a>
+          <a class="active" href="recent.html" title="recent payments">
+            <i class="fa fa-history"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span
+              >Recent</span
+            >
+          </a>
+          <a href="search.html" title="search individual report">
+            <i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span
+              >Search</span
+            >
+          </a>
+          <a href="report.html" title="view payment report and generate report for department">
+            <i class="fa fa-clipboard-list"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span
+              >Report</span
+            >
+          </a>
+        </a>
+          <a href="#" id="logout">
+            <i class="fa-solid fa-right-from-bracket" title="logout"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Logout</span>
+          </a>
+    </div>
+
+    <!-- Page content -->
+    <div class="content">
+        <div class="row  top">
+            <div class="col-lg-6">  <h3 class="title"><i class="fa fa-history"></i> Recent Payments</h3></div>
+            <div class="col-lg-6 pt-4   ">  
+                
+            </div>
+            <!--row-->
+        </div>
+<br>
+      <div class="container">
+       <!---main content-->
+     
+     <!-- #content-area-->
+     <div class="content-area">
+    <input type="text" placeholder="roll no" name="rollNo" id="rollNo"> <button class="search-btn"><i class="fa fa-search"></i></button>
+<div class="major-content" >
+  <center><i class="spinner-border spinner1"></i></center>
+   
+  </div>
+       <!---end major content-->
+<hr>
+<!--footer-->
+<p align="center" class="m-1">
+    &copy; Sri Sankara Bhagavthi Arts & Science College. All Rights
+    Reserved
+  </p>
+<!--footer-->
+                <!--container-->
+      </div>
+    <!--end content-->
+</div>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<!--jquery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+<script>
+  $(document).ready(()=>{
+
+    try {
+  if(JSON.parse(localStorage.getItem("FMSUsEr")).pos!="Handle Only Fees"){
+   window.location.href="../index.html";
+  }
+} catch (error) {
+  window.location.href="../index.html";
+}
+$("#logout").click(()=>{
+
+  swal("Are you sure you want to do this?", {
+  buttons: ["cancel", true],
+}).then((data)=>{
+  if(data==true){
+    localStorage.removeItem("FMSUsEr");
+window.location.href="../index.html";
+  }
+
+
+})
+
+})
+
+var staffDetail = JSON.parse(localStorage.getItem("FMSUsEr"));
+      $(".userName").html(staffDetail.nAmeUSer);
+      $("#logDate").html(staffDetail.lDate);
+
+
+    var batch;
+    var sem;
+function getPayments(){
+  $(".major-content").empty().append("  <center><i class='spinner-border spinner1'></i></center>");
+  $(".spinner1").css("display","inline-block");
+    try{
+    batch=JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch;
+    sem=JSON.parse(localStorage.getItem("FMSbATcHSeM")).sem;
+    $.ajax({
+  method:"POST",
+  url:"../php/getLast50Payments.php",
+  data:{batch:batch,sem:sem},
+  success:(data)=>{
+ if(data!=0||data!=000){
+  var RecordData=JSON.parse(data);
+RecordData.forEach(e => {
+  var $total=Number(e.collegeFees)+Number(e.skillFees)+Number(e.otherFees)+Number(e.busOrVanFees)+Number(e.fine);
+  $(".major-content").append(`
+   
+   <div class='container'> 
+           <div class='mt-2'>
+           <table class='table table-dark'>
+<tr>
+<td class='bg-secondary'>
+<label>Date :</label>
+${e.date}
+<label >Recipt No :</label>
+${e.receiptNo
+}
+</td>
+<td class='bg-secondary'>
+<label>RegNo :</label>
+${e.regNo}
+<label>Department :</label>
+${e.department}
+</td>
+
+</tr>
+<tr>
+<th>College Fees</th>
+<td>${e.collegeFees}</td>
+</tr>
+<tr>
+<th>Skill Fees</th>
+<td>${e.skillFees}</td>
+</tr>
+<tr>
+<th>Bus or Van Fees</th>
+<td>${e.busOrVanFees}</td>
+</tr>
+<tr>
+<th>Other Fees</th>
+<td>${e.otherFees}</td>
+</tr>
+<tr>
+<th>Fine</th>
+<td>${e.fine}</td>
+</tr>
+<tr>
+<th>Total</th>
+<td>${$total}</td>
+</tr>
+<tr>
+<th> </th>
+<td><button class='action2' eid='${e.id}' title='delete this payment history'><i class='fa fa-trash'></i></button></td>
+</tr>
+           </table>
+           </div>
+           <!---container-->
+           </div>
+   `);
+});//foreach
+ 
+    $(".spinner1").css("display","none");
+}
+else if(data==0)
+$(".major-content").append("<p align='center'>No Payment History Yet</p>");
+    else
+    swal("oops something went wrong :(", " ", "warning");
+    $(".spinner1").css("display","none");
+
+  },
+  error:(err)=>{
+    swal("oops something went wrong :(", " ", "warning");
+    $(".spinner1").css("display","none");
+
+  }
+  })//ajax  
+      
+}
+   catch(err){
+    swal("please set the batch & sem in dashboard", " ", "warning");
+   }
+
+}//fn
+getPayments();
+//delete
+
+$(document).on("click",".action2",function(){
+ var delId=$(this).attr("eid");
+swal({
+title: "Are you sure?",
+text: "Once deleted, unable to recover this record ",
+icon: "warning",
+buttons: true,
+dangerMode: true,
+}).then(per=>{
+  if(per){
+    $(".spinner1").css("display","inline-block");
+    $delId=$(this).attr("eid")
+    $.ajax({
+  method:"POST",
+  url:"../php/deletePayment.php",
+  data:{id:delId},
+  success:(data)=>{
+    if(data==1){
+      swal("record has been deleted!", {
+      icon: "success",
+    });
+    getPayments();
+    $(".spinner1").css("display","none");
+
+    }
+    else{
+      swal("oops something went wrong :(", " ", "warning");
+      $(".spinner1").css("display","none");
+    }
+  },error:err=>{
+    console.log(err);
+    swal("oops something went wrong :(", " ", "warning");
+    $(".spinner1").css("display","none");
+  }
+    })
+  }//per if
+})
+})//dele
+$(".search-btn").click(()=>{
+  $(".spinner1").css("display","inline-block");
+ try{
+  $.ajax({
+  method:"post",
+  url:"../php/getFeesRecordsForIndivdualStudent.php",
+  data: {batch:batch,sem:sem,rollNo :$("#rollNo").val()},
+  success:(data)=>{
+    console.log(data);
+      if(data!=0||data!=000){
+        var RecordData=JSON.parse(data);
+        $(".major-content").empty();
+RecordData.forEach(e => {
+  var $total=Number(e.collegeFees)+Number(e.skillFees)+Number(e.otherFees)+Number(e.busOrVanFees)+Number(e.fine);
+  $(".major-content").append(`
+   
+   <div class='container'> 
+           <div class='mt-2'>
+           <table class='table table-dark'>
+<tr>
+<td class='bg-secondary'>
+<label>Date :</label>
+${e.date}
+<label >Recipt No :</label>
+${e.receiptNo
+}
+</td>
+<td class='bg-secondary'>
+<label>RegNo :</label>
+${e.regNo}
+</td>
+
+</tr>
+<tr>
+<th>College Fees</th>
+<td>${e.collegeFees}</td>
+</tr>
+<tr>
+<th>Skill Fees</th>
+<td>${e.skillFees}</td>
+</tr>
+<tr>
+<th>Bus or Van Fees</th>
+<td>${e.busOrVanFees}</td>
+</tr>
+<tr>
+<th>Other Fees</th>
+<td>${e.otherFees}</td>
+</tr>
+<tr>
+<th>Fine</th>
+<td>${e.fine}</td>
+</tr>
+<tr>
+<th>Total</th>
+<td>${$total}</td>
+</tr>
+<tr>
+<th> </th>
+<td><button class='action2' eid='${e.id}' title='delete this payment history'><i class='fa fa-trash'></i></button></td>
+</tr>
+           </table>
+           </div>
+           <!---container-->
+           </div>
+   `);
+});//foreach
+        $(".spinner-border").css({ display: "none" });
+      }else if(data==0){
+        swal("no payments yet i this semester", " ", "warning");
+    $(".spinner-border").css({ display: "none" });
+      }
+      else  swal("oops something went wrong", " ", "warning");
+      $(".spinner-border").css({ display: "none" });
+  },
+  error:(err)=>{
+  console.log(err);
+  swal("oops something went wrong", " ", "warning");
+  $(".spinner-border").css({ display: "none" });
+  }
+})
+ }
+ catch(err){
+  swal("oops something went wrong", " ", "warning");
+  $(".spinner-border").css({ display: "none" });
+ }
+})
+   })//ready
+</script>
+</body>
+
+ </html>

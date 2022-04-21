@@ -7,7 +7,7 @@
     <title>SSB FESS MANAGEMENT SYSTEM | ADMIN Edit Student Record</title>
     <link
       rel="shortcut icon"
-      href="assets/images/favicon.ico"
+      href="./assets/images/favicon.ico"
       type="image/x-icon"
     />
     <!--font awesome cdn-->
@@ -29,7 +29,7 @@
       crossorigin="anonymous"
     />
     <!--css-->
-    <link rel="stylesheet" href="./assets/css/viewStudentRecord.css" />
+    <link rel="stylesheet" href="../assets/css/viewStudentRecord.css" />
   </head>
   <body>
     <div class="container">
@@ -105,7 +105,7 @@
         <div class="col-lg-6">
           <center>
             <br />
-            <img class="img mt-5" src="./assets/images/logo.png" alt="" />
+            <img class="img mt-5" src="../assets/images/logo.png" alt="" />
             <h3>SSB</h3>
             <h4>Fees Management System</h4>
             <br />
@@ -139,11 +139,14 @@
   <script>
     $(document).ready(() => {
       try {
-        if (JSON.parse(localStorage.getItem("FMSUsEr")).pos != "nimda") {
-          window.location.href = "index.html";
+        if (
+          JSON.parse(localStorage.getItem("FMSUsEr")).pos !=
+          "Handle Only Students"
+        ) {
+          window.location.href = "../index.html";
         }
       } catch (error) {
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
       }
 
       var rollNo;
@@ -156,7 +159,7 @@
         console.log(batch, rollNo);
         $.ajax({
           type: "POST",
-          url: "./php/getInduvidualStudent.php",
+          url: "../php/getInduvidualStudent.php",
           data: { batch: batch, rollNo: rollNo },
           success: (data) => {
             console.log(data);
@@ -168,7 +171,7 @@
               $("#skill").html("<option value=''>--</option>");
               $.ajax({
                 method: "POST",
-                url: "./php/getSkillToAddStudent.php",
+                url: "../php/getSkillToAddStudent.php",
                 data: { batch: batch },
                 success: (data) => {
                   console.log(JSON.parse(data));
@@ -226,7 +229,7 @@
             $(".spinner1").css({ display: " inline-block" });
             $.ajax({
               type: "POST",
-              url: "./php/updateStudent.php",
+              url: "../php/updateStudent.php",
               data: {
                 batch: batch,
                 rollNo: rollNo,

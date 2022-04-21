@@ -20,7 +20,7 @@
 /* Sidebar links */
 
 .sidebar .logo img {
-  width: 50%;
+  width: 55%;
   height: 100px;
 }
 .sidebar .logo p {
@@ -156,4 +156,15 @@
 }
 .spinner-border {
   display: none;
+}
+.userName{
+  font-family: "Oswald", sans-serif;
+  font-size: 18px;
+}
+#logDate{
+  font-family: "Oswald", sans-serif;
+ font-size: 14px; 
+}
+.profileIcon{
+  font-size: 23px;
 }

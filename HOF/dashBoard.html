@@ -45,25 +45,30 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
      <!--alert library-->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
  <!--css-->
- <link rel="stylesheet" href="./assets/css/dashboard.css" />
+ <link rel="stylesheet" href="../assets/css/dashboard.css" />
  <link
    rel="shortcut icon"
-   href="assets/images/favicon.ico"
+   href="../assets/images/favicon.ico"
    type="image/x-icon"
  />
-    <title>SSB FESS MANAGEMENT SYSTEM | ADMIN dashboard</title>
+    <title>SSB FESS MANAGEMENT SYSTEM | dashboard</title>
   </head>
   <body> 
     <!-- The sidebar -->
     <div class="sidebar">
         <div class="logo">
             <center>
-              <img class="img-responsive" src="./assets/images/logo.png" alt="" />
+              <img class="img-responsive" src="../assets/images/logo.png" alt="" />
               <p>SSB</p>
             </center>
-          </div>
+          </div> 
+          <center>
+            <i class="fa fa-user-circle profileIcon"></i>
+            <p class="userName">
+              <p  id="logDate"></p> 
+            </p>
+          </center>
           <p class="menu-text">Menu</p>
-        
         <a class="active" href="dashboard.html">
             <i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Home</span>
           </a>
@@ -86,19 +91,6 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
             >
           </a>
         </a>
-        <a href="staff.html" title="add staff & view,edit,delete ">
-          <i class="fa fa-user-circle"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span
-            >Staff</span
-          >
-        </a>
-          <a href="student.html" title="add student & view,edit,delete ">
-            <i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span
-              >Student</span
-            >
-          </a>
-          <a href="setting.html" title="add sem fees for department , skill fees and rest pass">
-            <i class="fa fa-gear"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Settings</span>
-          </a>
           <a href="#" id="logout">
             <i class="fa-solid fa-right-from-bracket" title="logout"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Logout</span>
           </a>
@@ -107,7 +99,7 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
     <!-- Page content -->
     <div class="content">
         <div class="row  top">
-            <div class="col-lg-6">  <h3 class="title">Admin Pannel</h3></div>
+            <div class="col-lg-6">  <h3 class="title">Dashboard</h3></div>
             <div class="col-lg-6 pt-4   ">  
                 <div class="inner-content1  ">
                     <input type="text" id="batch" placeholder="batch" />
@@ -284,11 +276,11 @@ MR.Ashok Lingam Sir & MR.Karuppasamy sir
   $(document).ready(()=>{
 
 try {
-  if(JSON.parse(localStorage.getItem("FMSUsEr")).pos!="nimda"){
-   window.location.href="index.html";
+  if(JSON.parse(localStorage.getItem("FMSUsEr")).pos!="Handle Only Fees"){
+   window.location.href="../index.html";
   }
 } catch (error) {
-  window.location.href="index.html";
+  window.location.href="../index.html";
 }
 $("#logout").click(()=>{
 
@@ -297,13 +289,16 @@ $("#logout").click(()=>{
 }).then((data)=>{
   if(data==true){
     localStorage.removeItem("FMSUsEr");
-window.location.href="index.html";
+window.location.href="../index.html";
   }
-
-
+})
 })
 
-})
+
+var staffDetail = JSON.parse(localStorage.getItem("FMSUsEr"));
+      $(".userName").html(staffDetail.nAmeUSer);
+      $("#logDate").html(staffDetail.lDate);
+
 
    try{
     $("#batch").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch);
@@ -428,7 +423,7 @@ function getBatchFees(department){
 $.ajax({
   async:false,
   method:"post",
-  url:"./php/getBatchFeesForbatchAndDep.php",
+  url:"../php/getBatchFeesForbatchAndDep.php",
   data:{department:department,batch:$("#batch").val()},
   success:(data)=>{
     if(data!=0||data!=000){
@@ -459,7 +454,7 @@ function getSkillFees( ){
 $.ajax({
   async:false,
   method:"post",
-  url:"./php/getSkillToAddStudent.php",
+  url:"../php/getSkillToAddStudent.php",
   data: {batch:$("#batch").val()},
   success:(data)=>{
     if(data!=0||data!=000){
@@ -511,7 +506,7 @@ function getStudentOverAllFinePayed(rollNo){
   $.ajax({
   async:false,
   method:"post",
-  url:"./php/getOverAllFeesRecordsForIndivdualStudent.php",
+  url:"../php/getOverAllFeesRecordsForIndivdualStudent.php",
   data: {batch:$("#batch").val(),rollNo :rollNo},
   success:(data)=>{
    if(data!=0||data!=000){
@@ -535,7 +530,7 @@ function getDepartmentStudents(department){
 $.ajax({
   async:false,
   method:"post",
-  url: "./php/getStudentDepartmentWise.php",
+  url: "../php/getStudentDepartmentWise.php",
         data:{batch:$("#batch").val(),department:department},
   success:(data)=>{
     
@@ -565,7 +560,7 @@ function getStudentPaymentHistory(rollNo){
 $.ajax({
   async:false,
   method:"post",
-  url:"./php/getFeesRecordsForIndivdualStudent.php",
+  url:"../php/getFeesRecordsForIndivdualStudent.php",
   data: {batch:$("#batch").val(),sem:$("#sem").val(),rollNo :rollNo},
   success:(data)=>{
       FetchedData= data;

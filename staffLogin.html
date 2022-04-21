@@ -42,11 +42,21 @@
           <label for="userName"
             ><i class="fa fa-user"></i>&nbsp;User Name</label
           >
-          <input id="userName" type="text" class="form-control" />
+          <input
+            id="userName"
+            name="userName"
+            type="text"
+            class="form-control"
+          />
         </div>
         <div class="form-group">
           <label for="password"><i class="fa fa-key"></i>&nbsp;Password</label>
-          <input id="password" type="password" class="form-control" />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            class="form-control"
+          />
         </div>
         <br />
         <button class="btn btn-primary">Login</button>
@@ -68,5 +78,91 @@
       integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
       crossorigin="anonymous"
     ></script>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(() => {
+        try {
+          if (
+            JSON.parse(localStorage.getItem("FMSUsEr")).pos ==
+            "Handle Only Students"
+          ) {
+            window.location.href = "./HOS/dashBoard.html";
+          } else if (
+            JSON.parse(localStorage.getItem("FMSUsEr")).pos ==
+            "Handle Only Fees"
+          ) {
+            window.location.href = "./HOF/dashBoard.html";
+          } else if (
+            JSON.parse(localStorage.getItem("FMSUsEr")).pos == "Manager"
+          ) {
+            window.location.href = "./M/dashBoard.html";
+          }
+        } catch (err) {}
+
+        $(".btn").click(() => {
+          var userNameStatus = false,
+            PasswordStatus = false;
+          if ($("#userName").val() != "") {
+            userNameStatus = true;
+            $("#userName").css("border", "1px solid #CED4DA");
+          } else {
+            $("#userName").css("border", "1px solid red");
+            userNameStatus = false;
+          }
+          if ($("#password").val() != "") {
+            PasswordStatus = true;
+            $("#password").css("border", "1px solid #CED4DA");
+          } else {
+            $("#password").css("border", "1px solid red");
+            PasswordStatus = false;
+          }
+
+          //condition
+
+          if (userNameStatus && PasswordStatus) {
+            $.ajax({
+              method: "POST",
+              url: "./php/checkStLogin.php",
+              data: {
+                userName: $("#userName").val(),
+                password: $("#password").val(),
+              },
+              success: (data) => {
+                console.log(data);
+                if (data != 0 && data != 000) {
+                  var staffData = JSON.parse(data);
+                  localStorage.setItem(
+                    "FMSUsEr",
+                    JSON.stringify({
+                      nAmeUSer: staffData[1].name,
+                      pos: staffData[1].position,
+                      lDate: staffData[0],
+                    })
+                  );
+
+                  if (staffData[1].position == "Handle Only Students") {
+                    location.replace("./HOS/dashBoard.html");
+                  } else if (staffData[1].position == "Handle Only Fees") {
+                    location.replace("./HOF/dashBoard.html");
+                  } else if (staffData[1].position == "Manager") {
+                    location.replace("./M/dashBoard.html");
+                  }
+                } ///
+                if (data == 0) {
+                  alert("invalid user name password");
+                }
+              },
+              error: (err) => {
+                console.log(err);
+                alert("oops something went wrong");
+              },
+            }); //ajax
+          } else {
+            alert("please enter the user name and password");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

@@ -46,3 +46,7 @@ body{
     height: 18px;
     width: 18px;
   }
+  .img{
+    width:40%
+    !important
+  }

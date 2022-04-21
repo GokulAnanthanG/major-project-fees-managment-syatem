@@ -1,0 +1,880 @@
+<!-- MAJOR PROJECT FESS MANAGEMENT SYSTEM -->
+<!-- TEAM -->
+<!--
+    ****************
+    G.GOKUL ANANTHAN
+    N.PREM
+    N.SATHISH KUMAR
+    S.SUDHAKAR
+    ****************
+UNDER THE GUIDANCE OF
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+MR.Ashok Lingam Sir & MR.Karuppasamy sir
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--font awesome cdn-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!--chart-->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"
+      integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!--bootsrap-->
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <!--alert library-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!--css-->
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+    <title>SSB FESS MANAGEMENT SYSTEM | dashboard</title>
+     
+  </head>
+  <body>
+    <!-- The sidebar -->
+    <div class="sidebar">
+      <div class="logo">
+        <center>
+          <img class="img-responsive" src="../assets/images/logo.png" alt="" />
+          <p>SSB</p>
+        </center>
+        <center>
+          <i class="fa fa-user-circle profileIcon"></i>
+          <p class="userName">
+            <p  id="logDate"></p> 
+          </p>
+        </center>
+      </div>
+      <p class="menu-text">Menu</p>
+
+      <a class="active" href="dashboard.html">
+        <i class="fa fa-home"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Home</span>
+      </a>
+      <a href="student.html" title="add student & view,edit,delete ">
+        <i class="fa fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;<span>Student</span>
+      </a>
+      <a href="#" id="logout">
+        <i class="fa-solid fa-right-from-bracket" title="logout"></i
+        >&nbsp;&nbsp;&nbsp;&nbsp;<span>Logout</span>
+      </a>
+    </div>
+
+    <!-- Page content -->
+    <div class="content">
+      <div class="row top">
+        <div class="col-lg-6"><h3 class="title">Admin Pannel</h3></div>
+        <div class="col-lg-6 pt-4">
+          <div class="inner-content1">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="batch" placeholder="batch" />
+            <button id="search"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+        <!--row-->
+      </div>
+      <br />
+      <span id="status1"></span><span id="status2"></span
+      ><span id="status3"></span><span id="status4"></span
+      ><span id="status5"></span><span id="status6"></span
+      ><span id="status7"></span><span id="status8"></span>
+      <div class="container">
+        <!--status bar-->
+        <h3 class="title">Student Strength</h3>
+        <p class="sub-title">Overall in Batch</p>
+        <div class="row p-1 status-bar">
+          <div class="col-lg-6 box1">
+            <p class="title">Boys</p>
+            <table>
+              <thead>
+                <tr>
+                   
+                  <td>Bus/van</td>
+                  <td>Others</td>
+                  <td>UG</td>
+                  <td>PG</td>
+                  <td>Total Boys</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                   
+                  <td><span id="boysBusOrVan">0</span></i></td>
+                  <td><span id="boysOthers">0</span></i></td>
+                  <td><span id="boysUg">0</span></i></td>
+                  <td><span id="boysPg">0</span></i></td>
+                  <td><span id="boysTotal">0</span></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-6 box2">
+            <p class="title">Girls</p>
+
+            <table>
+              <thead>
+                <tr>
+                   
+                  <td>Bus/van</td>
+                  <td>Others</td>
+                  <td>UG</td>
+                  <td>PG</td>
+                  <td>Total Girls</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                   
+                  <td><span id="girlsBusOrVan">0</span></i></td>
+                  <td><span id="girlsOthers">0</span></i></td>
+                  <td><span id="girlsUg">0</span></i></td>
+                  <td><span id="girlsPg">0</span></i></td>
+                  <td><span id="girlsTotal">0</span></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!--row-->
+        </div>
+        <!--end status bar-->
+        <br />
+        <!--chart-->
+        <h3 class="title">Student Strength</h3>
+        <p class="sub-title">Overall in Batch</p>
+        <div class="chart p-1">
+          <canvas id="myChart" width="400" height="300"></canvas>
+        </div>
+        <!--end chart-->
+        <br />
+        <!--department-staus-->
+        <h3 class="title">Fees Status</h3>
+        <p class="sub-title">department whise</p>
+        <div class="row p-1 department-status">
+          <div class="col-lg-4 box m-2">
+            <h5>
+              BCA&nbsp;
+              <span class="count">[<span id="bcaStrength">0</span>]</span>
+            </h5>
+            <span class="heading1">Boys</span>
+            <br />
+            <p><span id="bcaBoys">0</span></p>
+
+            <span class="heading2"> Girls</span>
+            <p><span id="bcaGirls">0</span></p>
+          </div>
+          <div class="col-lg-4 box m-2">
+            <h5>
+              B.Com&nbsp;
+              <span class="count">[<span id="bcomStrength">0</span>]</span>
+            </h5>
+            <span class="heading1">Boys</span>
+            <br />
+            <p><span id="bcomBoys">0</span></p>
+
+            <span class="heading2"> Girls</span>
+            <p><span id="bcomGirls">0</span></p>
+          </div>
+          <div class="col-lg-4 box m-2">
+            <h5>
+              &nbsp;BBA<span class="count"
+                >[<span id="bbaStrength">0</span>]</span
+              >
+            </h5>
+            <span class="heading1">Boys</span>
+            <br />
+            <p><span id="bbaBoys">0</span></p>
+
+            <span class="heading2"> Girls</span>
+            <p><span id="bbaGirls">0</span></p>
+          </div>
+          <div class="col-lg-4 box m-2">
+            <h5>
+              Bsc(IT)&nbsp;
+              <span class="count">[<span id="bscitStrength">0</span>]</span>
+            </h5>
+            <span class="heading1">Boys</span>
+            <br />
+            <p><span id="bscitBoys">0</span></p>
+
+            <span class="heading2"> Girls</span>
+            <p><span id="bscitGirls">0</span></p>
+          </div>
+          <div class="col-lg-4 box m-2">
+            <h5>
+              Bsc(Maths)&nbsp;
+              <span class="count">[<span id="bscmathsStrength">0</span>]</span>
+            </h5>
+            <span class="heading1">Boys</span>
+            <br />
+            <p><span id="bscmathsBoys">0</span></p>
+
+            <span class="heading2"> Girls</span>
+            <p><span id="bscmathsGirls">0</span></p>
+          </div>
+          <div class="col-lg-4 box m-2">
+            <h5>
+              BA(English)&nbsp;
+              <span class="count">[<span id="baenglishStrength">0</span>]</span>
+            </h5>
+            <span class="heading1">Boys</span>
+            <br />
+            <p><span id="baenglishBoys">0</span></p>
+
+            <span class="heading2"> Girls</span>
+            <p><span id="baenglishGirls">0</span></p>
+          </div>
+          <div class="col-lg-4 box m-2">
+            <h5>
+              M.com&nbsp;
+              <span class="count">[<span id="mcomStrength">0</span>]</span>
+            </h5>
+            <span class="heading1">Boys</span>
+            <br />
+            <p><span id="mcomBoys">0</span></p>
+
+            <span class="heading2"> Girls</span>
+            <p><span id="mcomGirls">0</span></p>
+          </div>
+          <!--row-->
+        </div>
+        <!--end department staus-->
+        <hr />
+        <!--footer-->
+        <p align="center" class="m-1">
+          &copy; Sri Sankara Bhagavthi Arts & Science College. All Rights
+          Reserved
+        </p>
+        <!--footer-->
+        <!--container-->
+      </div>
+      <!--end content-->
+    </div>
+  </body>
+  <!-- JavaScript Bundle with Popper -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+    crossorigin="anonymous"
+  ></script>
+  <!--jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      try {
+        if (
+          JSON.parse(localStorage.getItem("FMSUsEr")).pos !=
+          "Handle Only Students"
+        ) {
+          window.location.href = "../index.html";
+        }
+      } catch (error) {
+        window.location.href = "../index.html";
+      }
+      $("#logout").click(() => {
+        swal("Are you sure you want to do this?", {
+          buttons: ["cancel", true],
+        }).then((data) => {
+          if (data == true) {
+            localStorage.removeItem("FMSUsEr");
+            window.location.href = "../index.html";
+          }
+        });
+      });
+
+      var staffDetail = JSON.parse(localStorage.getItem("FMSUsEr"));
+      $(".userName").html(staffDetail.nAmeUSer);
+      $("#logDate").html(staffDetail.lDate);
+
+      try {
+        $("#batch").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch);
+        $("#sem").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).sem);
+      } catch (err) {
+        swal("please set the batch & sem", " ", "warning");
+      }
+      $("#search").click(() => {
+        if ($("#batch").val() != "" && $("#sem").val() != "") {
+          let FMSbATcHSeM = { batch: $("#batch").val(), sem: $("#sem").val() };
+          localStorage.setItem("FMSbATcHSeM", JSON.stringify(FMSbATcHSeM));
+          //fn main
+          main();
+        } else swal("please enter the batch & sem", " ", "warning");
+      }); //search
+      //chart
+      function Displaychart(payed, unpayed) {
+        const ctx = document.getElementById("myChart").getContext("2d");
+        const myChart = new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: ["Boys", "Girls"],
+            datasets: [
+              {
+                label: "college boys girls strength",
+                data: [payed, unpayed],
+                backgroundColor: [
+                  "rgba(54, 163, 235, 0.363)",
+                  " rgba(255, 99, 133, 0.329)",
+                ],
+                borderColor: ["rgba(54, 162, 235, 1)", "rgba(255, 99, 132, 1)"],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      }
+
+      //end chart
+      ///
+      ///
+      var $bcaStudents,
+        $bcomStudents,
+        $bbaStudents,
+        $bscItSTudents,
+        $bscMathsStudents,
+        $baEnglishStudents,
+        $mcomStudents;
+      ////
+      function main() {
+        $("#boysBusOrVan").html(0);
+        $("#boysOthers").html(0);
+        $("#boysUg").html(0);
+        $("#boysPg").html(0);
+        $("#boysTotal").html(0);
+
+var boysBusOrVan=0,boysOthers=0,boysUg=0,boysPg=0,boysTotal=0;
+var girlsBusOrVan=0,girlsOthers=0,girlsUg=0,girlsPg=girlsTotal=0;
+        $("#girlsBusOrVan").html(0);
+        $("#girlsOthers").html(0);
+        $("#girlsUg").html(0);
+        $("#girlsPg").html(0);
+        $("#girlsTotal").html(0);
+
+
+var bcaBoys=0,bcaGirls=0,bcomBoys=0,bcomGirls=0,bbaBoys=0,bbaGirls=0,bscitBoys=0,bscitGirls=0,
+bscmathsBoys=0,bscmathsGirls=0,baenglishBoys=0,baenglishGirls=0,mcomBoys=0,mcomGirls=0;
+
+        $("#bcaBoys").html(0);
+        $("#bcaGirls").html(0);
+        $("#bcomBoys").html(0);
+        $("#bcomGirls").html(0);
+        $("#bbaBoys").html(0);
+        $("#bbaGirls").html(0);
+        $("#bscitBoys").html(0);
+        $("#bscitGirls").html(0);
+        $("#bscmathsBoys").html(0);
+        $("#bscmathsGirls").html(0);
+        $("#baenglishBoys").html(0);
+        $("#baenglishGirls").html(0);
+        $("#mcomBoys").html(0);
+        $("#mcomGirls").html(0);
+       
+        /*---functions---*/
+
+       
+        /* function to fetch department students */
+        function getDepartmentStudents(department) {
+          let status = false;
+          let FetchedData;
+          $.ajax({
+            async: false,
+            method: "post",
+            url: "../php/getStudentDepartmentWise.php",
+            data: { batch: $("#batch").val(), department: department },
+            success: (data) => {
+              FetchedData = data;
+              status = true;
+            },
+            error: (err) => {
+              status = false;
+              console.log(err);
+            },
+          });
+          if (status == true) {
+            return Promise.resolve(FetchedData);
+          } else return Promise.reject("something went wrong");
+        }
+        /*end function to fetch department students */
+
+       
+        //processs for bca student
+        async function BCA() {
+          if ($bcaStudents != 0  ) {
+            
+          $("#bcaStrength").html($bcaStudents.length)
+            $bcaStudents.forEach((student) => {
+             if(student.gender=="Male"){
+               
+              bcaBoys++;
+              $("#bcaBoys").html(bcaBoys);
+
+               boysTotal++;
+               boysUg++;
+               $("#boysTotal").html(boysTotal);
+               $("#boysUg").html(boysUg);
+               if(Number(student.vanOrBusFees)>0){
+                 boysBusOrVan++;
+                 $("#boysBusOrVan").html(boysBusOrVan);
+               }
+               else{
+                 boysOthers++;
+                 $("#boysOthers").html(boysOthers);
+               }
+             }
+             else{
+              bcaGirls++;
+              $("#bcaGirls").html(bcaGirls);
+
+              girlsTotal++
+              girlsUg++
+               $("#girlsTotal").html(girlsTotal);
+               $("#girlsUg").html(girlsUg);
+               if(Number(student.vanOrBusFees)!=0){
+                 girlsBusOrVan++;
+                 $("#girlsBusOrVan").html(girlsBusOrVan);
+               }
+               else{
+                 girlsOthers++;
+                 $("#girlsOthers").html(girlsOthers);
+
+               }
+             }//else
+
+            });
+          }
+        }
+        //end processs for bca student
+
+        //processs for bca student
+        async function BCOM() {
+          if ($bcomStudents  != 0 ) {
+            $("#bcomStrength").html($bcomStudents.length)
+            $bcomStudents.forEach((student) => {
+              if(student.gender=="Male"){
+                
+                bcomBoys++;
+                $("#bcomBoys").html(bcomBoys)
+
+               boysTotal++;
+               boysUg++;
+               $("#boysTotal").html(boysTotal);
+               $("#boysUg").html(boysUg);
+               if(Number(student.vanOrBusFees)>0){
+                 boysBusOrVan++;
+                 $("#boysBusOrVan").html(boysBusOrVan);
+               }
+               else{
+                 boysOthers++;
+                 $("#boysOthers").html(boysOthers);
+               }
+             }
+             else{
+
+              bcomGirls++;
+                $("#bcomBoys").html(bcomGirls)
+
+              girlsTotal++
+              girlsUg++
+               $("#girlsTotal").html(girlsTotal);
+               $("#girlsUg").html(girlsUg);
+               if(Number(student.vanOrBusFees)!=0){
+                 girlsBusOrVan++;
+                 $("#girlsBusOrVan").html(girlsBusOrVan);
+               }
+               else{
+                 girlsOthers++;
+                 $("#girlsOthers").html(girlsOthers);
+
+               }
+             }//else
+
+
+            });
+          }
+        }
+        //end processs for bcom student
+
+        //processs for bba student
+        async function BBA() {
+          if ($bbaStudents != 0  ) {
+            $("#bbaStrength").html($bbaStudents.length)
+            $bbaStudents.forEach((student) => {
+              if(student.gender=="Male"){
+
+
+                bbaBoys++;
+                $("#bbaBoys").html(bbaBoys);
+
+               boysTotal++;
+               boysUg++;
+               $("#boysTotal").html(boysTotal);
+               $("#boysUg").html(boysUg);
+               if(Number(student.vanOrBusFees)>0){
+                 boysBusOrVan++;
+                 $("#boysBusOrVan").html(boysBusOrVan);
+               }
+               else{
+                 boysOthers++;
+                 $("#boysOthers").html(boysOthers);
+               }
+             }
+             else{
+              girlsTotal++
+              girlsUg++
+               $("#girlsTotal").html(girlsTotal);
+               $("#girlsUg").html(girlsUg);
+               if(Number(student.vanOrBusFees)!=0){
+                 girlsBusOrVan++;
+                 $("#girlsBusOrVan").html(girlsBusOrVan);
+               }
+               else{
+
+                bbaGirls++;
+                $("#bbaGirls").html(bbaGirls);
+
+                 girlsOthers++;
+                 $("#girlsOthers").html(girlsOthers);
+
+               }
+             }//else
+
+
+            });
+          }
+        }
+        //end processs for bba student
+
+        //processs for BSCIT student
+        async function BSCIT() {
+          if ($bscItSTudents != 0  ) {
+            $("#bscitStrength").html($bscItSTudents.length)
+            $bscItSTudents.forEach((student) => {
+              if(student.gender=="Male"){
+
+                bscitBoys++;
+                $("#bscitBoys").html(bscitBoys);
+
+               boysTotal++;
+               boysUg++;
+               $("#boysTotal").html(boysTotal);
+               $("#boysUg").html(boysUg);
+               if(Number(student.vanOrBusFees)>0){
+                 boysBusOrVan++;
+                 $("#boysBusOrVan").html(boysBusOrVan);
+               }
+               else{
+                 boysOthers++;
+                 $("#boysOthers").html(boysOthers);
+               }
+             }
+             else{
+              girlsTotal++
+              girlsUg++
+               $("#girlsTotal").html(girlsTotal);
+               $("#girlsUg").html(girlsUg);
+               if(Number(student.vanOrBusFees)!=0){
+                 girlsBusOrVan++;
+                 $("#girlsBusOrVan").html(girlsBusOrVan);
+               }
+               else{
+
+                bscitGirls++;
+                $("#bscitGirls").html(bscitGirls);
+
+                 girlsOthers++;
+                 $("#girlsOthers").html(girlsOthers);
+
+               }
+             }//else
+
+            });
+          }
+        }
+        //end processs for BSCIT student
+
+        // processs for BSCMATHS student
+        async function BSCMATHS() {
+          if ($bscMathsStudents != 0 ) {
+            $("#bscmathsStrength").html($bscMathsStudents.length)
+            $bscMathsStudents.forEach((student) => {
+              if(student.gender=="Male"){
+
+
+                bscmathsBoys++;
+                $("#bscmathsBoys").html(bscmathsBoys);
+
+
+               boysTotal++;
+               boysUg++;
+               $("#boysTotal").html(boysTotal);
+               $("#boysUg").html(boysUg);
+               if(Number(student.vanOrBusFees)>0){
+                 boysBusOrVan++;
+                 $("#boysBusOrVan").html(boysBusOrVan);
+               }
+               else{
+                 boysOthers++;
+                 $("#boysOthers").html(boysOthers);
+               }
+             }
+             else{
+              bscmathsGirls++;
+                $("#bscmathsGirls").html(bscmathsGirls);
+
+
+              girlsTotal++
+              girlsUg++
+               $("#girlsTotal").html(girlsTotal);
+               $("#girlsUg").html(girlsUg);
+               if(Number(student.vanOrBusFees)!=0){
+                 girlsBusOrVan++;
+                 $("#girlsBusOrVan").html(girlsBusOrVan);
+               }
+               else{
+                 girlsOthers++;
+                 $("#girlsOthers").html(girlsOthers);
+
+               }
+             }//else
+
+            });
+          }
+        }
+        //end processs for BSCMATHS student
+
+        // processs for BAENGLISH student
+        async function BAENGLISH() {
+          if ($baEnglishStudents != 0  ) {
+            $("#baenglishStrength").html($baEnglishStudents.length)
+            $baEnglishStudents.forEach((student) => {
+              if(student.gender=="Male"){
+
+                baenglishBoys++;
+                $("#baenglishBoys").html(baenglishBoys);
+
+               boysTotal++;
+               boysUg++;
+               $("#boysTotal").html(boysTotal);
+               $("#boysUg").html(boysUg);
+               if(Number(student.vanOrBusFees)>0){
+                 boysBusOrVan++;
+                 $("#boysBusOrVan").html(boysBusOrVan);
+               }
+               else{
+                 boysOthers++;
+                 $("#boysOthers").html(boysOthers);
+               }
+             }
+             else{
+              baenglishGirls++;
+                $("#baenglishGirls").html(baenglishGirls);
+
+              girlsTotal++
+              girlsUg++
+               $("#girlsTotal").html(girlsTotal);
+               $("#girlsUg").html(girlsUg);
+               if(Number(student.vanOrBusFees)!=0){
+                 girlsBusOrVan++;
+                 $("#girlsBusOrVan").html(girlsBusOrVan);
+               }
+               else{
+                 girlsOthers++;
+                 $("#girlsOthers").html(girlsOthers);
+
+               }
+             }//else
+
+            });
+          }
+        }
+        //end processs for BAENGLISH student
+
+        // processs for MCOM student
+        async function MCOM() {
+          if ($mcomStudents != 0 ) {
+            $("#mcomStrength").html($mcomStudents.length)
+            $mcomStudents.forEach((student) => {
+              if(student.gender=="Male"){
+                
+                mcomBoys++;
+                $("#mcomBoys").html(mcomBoys);
+
+               boysTotal++;
+               boysPg++;
+               $("#boysTotal").html(boysTotal);
+               $("#boysPg").html(boysPg);
+               if(Number(student.vanOrBusFees)>0){
+                 boysBusOrVan++;
+                 $("#boysBusOrVan").html(boysBusOrVan);
+               }
+               else{
+                 boysOthers++;
+                 $("#boysOthers").html(boysOthers);
+               }
+             }
+             else{
+
+              mcomGirls++;
+                $("#mcomGirls").html(mcomGirls);
+
+              girlsTotal++
+              girlsPg++
+               $("#girlsTotal").html(girlsTotal);
+               $("#girlsPg").html(girlsPg);
+               if(Number(student.vanOrBusFees)!=0){
+                 girlsBusOrVan++;
+                 $("#girlsBusOrVan").html(girlsBusOrVan);
+               }
+               else{
+                 girlsOthers++;
+                 $("#girlsOthers").html(girlsOthers);
+
+               }
+             }//else
+
+            });
+    
+          }
+          $(".chart").empty().append(' <canvas id="myChart" width="400" height="300"></canvas>');
+    Displaychart(boysTotal,girlsTotal);
+        }
+        //end processs for MCOM student
+
+        /*---End functions---*/
+
+        /********process********/
+        async function process() {
+          //getting bca student
+          try {
+            $bcaStudents = await getDepartmentStudents("BCA");
+            $bcaStudents = JSON.parse($bcaStudents);
+          } catch (er) {
+            console.log(
+              "failed to get bca department students , check it is added or not"
+            );
+          }
+          //end getting bca student
+
+          //getting bcom student
+          try {
+            $bcomStudents = await getDepartmentStudents("B.Com");
+            $bcomStudents = JSON.parse($bcomStudents);
+          } catch (er) {
+            console.log(
+              "failed to get bcom department students , check it is added or not"
+            );
+          }
+
+          //end getting bcom student
+
+          //getting bba student
+          try {
+            $bbaStudents = await getDepartmentStudents("BBA");
+            $bbaStudents = JSON.parse($bbaStudents);
+          } catch (err) {
+            console.log(
+              "failed to get BBA department students , check it is added or not"
+            );
+          }
+          //end getting bba student
+
+          //getting bscIt student
+          try {
+            $bscItSTudents = await getDepartmentStudents("Bsc(IT)");
+            $bscItSTudents = JSON.parse($bscItSTudents);
+          } catch (err) {
+            console.log(
+              "failed to get Bsc(IT) department students , check it is added or not"
+            );
+          }
+          //end getting bscIt student
+
+          //getting Bsc(Maths) student
+          try {
+            $bscMathsStudents = await getDepartmentStudents("Bsc(Maths)");
+            $bscMathsStudents = JSON.parse($bscMathsStudents);
+          } catch (err) {
+            console.log(
+              "failed to get Bsc(Maths) department students , check it is added or not"
+            );
+          }
+          //end getting Bsc(Maths) student
+
+          //getting BA(English) student
+          try {
+            $baEnglishStudents = await getDepartmentStudents("BA(English)");
+            $baEnglishStudents = JSON.parse($baEnglishStudents);
+          } catch (err) {
+            console.log(
+              "failed to get Bsc(English) department students , check it is added or not"
+            );
+          }
+          //end getting BA(English) student
+
+          //getting mcom student
+          try {
+            $mcomStudents = await getDepartmentStudents("M.Com");
+            $mcomStudents = JSON.parse($mcomStudents);
+          } catch (err) {
+            console.log(
+              "failed to getM.Com department students , check it is added or not"
+            );
+          }
+          //end getting mcom student
+
+          
+
+          //DEPARTMENT PROCES
+
+          BCA();
+          BCOM();
+          BBA();
+          BSCIT();
+          BSCMATHS();
+          BAENGLISH();
+          MCOM();
+
+          //END DEPARTMENT PROCES
+        }
+        /********End process********/
+        if ($("#batch").val() != "" && $("#sem").val() != "") {
+          process();
+        } else {
+          swal("please enter the batch & sem", " ", "warning");
+        }
+      }
+      //fun main();
+      main();
+    });
+  </script>
+</html>
