@@ -1,6 +1,6 @@
 <?php
 include"config.php";
-$sql="SELECT * FROM payments WHERE rollNo='{$_POST["rollNo"]}' AND batch='{$_POST["batch"]}' AND  sem='{$_POST["sem"]}'  ";
+ $sql="SELECT * FROM payments WHERE rollNo='{$_POST["rollNo"]}' AND batch='{$_POST["batch"]}' AND  sem='{$_POST["sem"]}'  ";
 if($res=$con->query($sql)){
 if($res->num_rows>0){
     $data=array();

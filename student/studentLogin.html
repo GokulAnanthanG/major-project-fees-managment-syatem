@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="orange" />
+
+    <!--bootsrap-->
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+    <!--font awesome cdn-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!--css-->
+    <link rel="stylesheet" href="studentLogin.css" />
+    <link
+      rel="shortcut icon"
+      href="../assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+    <title>SSB FESS MANAGEMENT SYSTEM | Student Login</title>
+  </head>
+  <body>
+    <center>
+      <img class="mt-5" src="../assets/images/logo2.png" alt="" />
+    </center>
+    <br />
+    <p class="heading" align="center">Fees Management System</p>
+    <div class="container">
+      <div class="form-group mt-3">
+        <label for="">Regsitration No</label>
+        <input
+          class="form-control"
+          type="text"
+          name="regsitrationNo"
+          id="regsitrationNo"
+        />
+      </div>
+      <div class="form-group">
+        <label for="batch">Batch</label>
+        <input class="form-control" type="text" name="batch" id="batch" />
+      </div>
+
+      <div class="form-group">
+        <label for="semester">Semester</label>
+        <select class="form-control" name="semester" id="semester">
+          <option value="">--</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <br />
+        <button class="btn btn-primary">Login</button>
+      </div>
+      <!---container-->
+    </div>
+
+    <footer class="mt-5">
+      <p align="center">
+        &copy; Sri Sankara Bhagavthi Arts & Science College. All Rights Reserved
+      </p>
+    </footer>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+      crossorigin="anonymous"
+    ></script>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(() => {
+        $(".btn").click(() => {
+          var regsitrationNo = false,
+            batch = false,
+            semester = false;
+          if ($("#regsitrationNo").val() != "") {
+            regsitrationNo = true;
+            $("#userName").css("border", "1px solid #CED4DA");
+          } else {
+            $("#regsitrationNo").css("border", "1px solid red");
+            regsitrationNo = false;
+          }
+          if ($("#batch").val() != "") {
+            batch = true;
+            $("#batch").css("border", "1px solid #CED4DA");
+          } else {
+            $("#batch").css("border", "1px solid red");
+            batch = false;
+          }
+
+          if ($("#semester").val() != "") {
+            semester = true;
+            $("#semester").css("border", "1px solid #CED4DA");
+          } else {
+            $("#semester").css("border", "1px solid red");
+            semester = false;
+          }
+          //condition
+
+          if (regsitrationNo && batch && semester) {
+            $.ajax({
+              method: "POST",
+              url: "../php/studentlogin.php",
+              data: {
+                regNo: $("#regsitrationNo").val(),
+                batch: $("#batch").val(),
+              },
+              success: (data) => {
+                if (data != 0 && data != 000) {
+                  var studentData = JSON.parse(data);
+                  console.log(studentData);
+                  location.href = `payments.html?sem=${$(
+                    "#semester"
+                  ).val()}&batch=${studentData[0].batch}&rollNo=${
+                    studentData[0].rollNo
+                  }`;
+                } ///
+                if (data == 0) {
+                  alert("invalid details");
+                }
+              },
+              error: (err) => {
+                console.log(err);
+                alert("oops something went wrong");
+              },
+            }); //ajax
+          } else {
+            alert("please fill all the fields");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

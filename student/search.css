@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@400;700;900&family=Tomorrow&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+  .nav{
+    background-color: rgba(235, 195, 17, 0.849);
+    width: 100%;
+  }
+.content {
+  background-color: #292a3e;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+  padding-left: 220px;
+}
+
+ 
+.major-content {
+  margin-top: 10px;
+  width: 100%;
+  min-height: 410px;
+  max-height: 410px;
+  overflow: auto;
+  border-radius: 5px;
+  background-color: #494c5a;
+  padding: 5px;
+  font-family: "Poppins", sans-serif;
+ }
+ b{
+    font-family: "Tomorrow", sans-serif;
+ }
+   .total table{
+       color: rgba(255, 255, 255, 0.774);
+   }
+   .total table tr td{
+    font-family: "Oswald", sans-serif;
+
+   }
+   .total table tr th{
+     font-family: "Tomorrow", sans-serif;
+
+   }
+  .major-content::-webkit-scrollbar {
+  width: 8px;
+}
+.major-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.major-content::-webkit-scrollbar-thumb {
+  background: #969191;
+}
+.spinner-border{
+  display: none;
+}
+ 
+input:nth-child(1){
+    width: 300px;
+    padding: 3px;
+     outline: none;
+  text-transform: none
+  !important;
+}
+input:nth-child(2){
+    width: 100px;
+    padding: 3px;
+     outline: none;
+  text-transform: none
+ }
+ input:nth-child(3){
+    width: 100px;
+    padding: 3px;
+     outline: none;
+  text-transform: none
+ }
+ button{
+     width: 100px;
+     height: 35px;
+ }
+ .hsitoryStack{
+    min-height: 380px;
+    max-height: 380px;
+    overflow: auto;
+ }
+ .hsitoryStack::-webkit-scrollbar {
+    width: 5px;
+  }
+  .hsitoryStack::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  .hsitoryStack::-webkit-scrollbar-thumb {
+    background: #969191;
+  }
+  .userName{
+    font-family: "Oswald", sans-serif;
+    font-size: 18px;
+  }
+  #logDate{
+    font-family: "Oswald", sans-serif;
+   font-size: 14px; 
+  }
+  .profileIcon{
+    font-size: 23px;
+  }
+  body .heading {
+    font-family: "Tomorrow", sans-serif;
+    font-size: 28px;
+  }
+   
+  footer {
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    margin-top: 30px;
+  }
+  .total table {
+     color: #292a3e;
+     text-transform: uppercase;
+  }
+  
