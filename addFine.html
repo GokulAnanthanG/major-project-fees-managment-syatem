@@ -243,17 +243,17 @@ $.ajax({
   url:"./php/getOverAllFeesRecordsForIndivdualStudent.php",
   data: {batch:$("#batch").val(),rollNo :$("#rollNo").val()},
   success:(data)=>{
+    console.log("--",data);
    if(data!=0||data!=000){
 var fetchedData=JSON.parse(data);
 let finePayed=0;
 fetchedData.forEach(e => {
     finePayed+=Number(e.fine);
 });//foreach
-console.log(studentRecord.fine,finePayed);
-$("#amount").val(Number(studentRecord.fine)-finePayed);
+ $("#amount").val(Number(studentRecord.fine)-finePayed);
    }
    else if(data==0){
-$("#amount").val(JSON.parse(studentRecord).fine);
+$("#amount").val(studentRecord.fine);
    }
    else{
     swal("oops something went wrong :(", " ", "warning");
@@ -293,6 +293,14 @@ $(".button1").click(()=>{
               button: "ok",
             });
             $("#frm")[0].reset();
+            $("#name").html("")
+ $("#department").html("")
+            try{
+    $("#batch").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch);
+    }
+   catch(err){
+    swal("please set the batch & sem", " ", "warning");
+   }
       }
       else{
         $(".spinner-border").css("display","none");
@@ -332,8 +340,7 @@ $(".button2").click(()=>{
     getStudent();
     console.log(studentRecord.fine);
     $(".spinner-border").css("display","inline-block");
-   alert(Number(studentRecord.fine)-Number($("#reduceFine").val()));
-     $.ajax({
+      $.ajax({
   async:false,
   method:"post",
   url:"./php/updateFine.php",
@@ -346,7 +353,15 @@ $(".button2").click(()=>{
               icon: "success",
               button: "ok",
             });
-            getStudent();
+            $("#frm")[0].reset();
+            $("#name").html("")
+ $("#department").html("")
+            try{
+    $("#batch").val(JSON.parse(localStorage.getItem("FMSbATcHSeM")).batch);
+    }
+   catch(err){
+    swal("please set the batch & sem", " ", "warning");
+   }
       }
       else{
         $(".spinner-border").css("display","none");
